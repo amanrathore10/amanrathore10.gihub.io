@@ -145,10 +145,9 @@ function addMovieListener(){
     };
 };
 function deleteMovieListener(){
-    var movies = document.getElementsByClassName('movie');
+    var movies = document.querySelectorAll('.movie');
         for(var k=0;k<movies.length;k++){
             movies[k].addEventListener('click',function(e){
-                console.log(this.parentNode);
             if(!e.target.contains(this.childNodes[0].children[0])){
                 console.log(this.childNodes,this.children);
                 newMovie = {};
