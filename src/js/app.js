@@ -90,7 +90,7 @@ document.getElementById('mymovietab').addEventListener('click',function(e){
     this.classList.add('active-tab');
 
     var temp = myMovies.map(function(result,index){
-        return '<div class="movie slideup"><div class="movie-image"><img src="'+(result.imageUrl||'./image/movie-image-fallback')+'"/></div><div class="movie-title">'+(result.title)+'<span class="movie-release_date">'+result.year+'</span></div></div>'
+        return '<div class="movie slideup"><div class="movie-image"><div class="delete-movie-button"><button>DELETE</button></div><img src="'+(result.imageUrl||'./image/movie-image-fallback')+'"/></div><div class="movie-title">'+(result.title)+'<span class="movie-release_date">'+result.year+'</span></div></div>'
     }).join('');
     if(myMovies.length!==0){
         document.getElementById('movie-container').innerHTML = temp;
@@ -98,6 +98,7 @@ document.getElementById('mymovietab').addEventListener('click',function(e){
     else{
         document.getElementById('movie-container').innerHTML = "<div><div>No Movie in your library</div></div>";
     } 
+    deleteMovieListener();
     
 });
 document.getElementById('homemovietab').addEventListener('click',function(e){
@@ -122,31 +123,55 @@ document.getElementById('menu-icon').addEventListener('click',function(e){
 
 function addMovieListener(){
     var movies = document.getElementsByClassName('movie');
-for(var k=0;k<movies.length;k++){
-    movies[k].addEventListener('click',function(e){
-    if(!e.target.contains(this.childNodes[0].children[0])){
-        console.log(this.childNodes,this.children);
-    newMovie = {};
-    newMovie.title = this.childNodes[1].innerHTML.split("<")[0];
-    newMovie.year = this.childNodes[1].children[0].innerText;
-    newMovie.imageUrl = this.childNodes[0].children[1].src;
-    console.log(newMovie);
-    console.log(myMovies,newMovie);
-    if(myMovies.indexOf(newMovie)===-1){
-        myMovies.push(newMovie);
-        localStorage.setItem('myMovies',JSON.stringify(myMovies));
-    }else{
-        newMovie = {};
-    }
-    }
-    
-    
-    
-
-});
+        for(var k=0;k<movies.length;k++){
+            movies[k].addEventListener('click',function(e){
+            if(!e.target.contains(this.childNodes[0].children[0])){
+                console.log(this.childNodes,this.children);
+                newMovie = {};
+                newMovie.title = this.childNodes[1].innerHTML.split("<")[0];
+                newMovie.year = this.childNodes[1].children[0].innerText;
+                newMovie.imageUrl = this.childNodes[0].children[1].src;
+                console.log(newMovie);
+                console.log(myMovies,newMovie);
+                if(myMovies.indexOf(newMovie)===-1){
+                    myMovies.push(newMovie);
+                    localStorage.setItem('myMovies',JSON.stringify(myMovies));
+                }else{
+                    newMovie = {};
+                }
+            }
+        });
+    };
 };
+function deleteMovieListener(){
+    var movies = document.getElementsByClassName('movie');
+        for(var k=0;k<movies.length;k++){
+            movies[k].addEventListener('click',function(e){
+            if(!e.target.contains(this.childNodes[0].children[0])){
+                console.log(this.childNodes,this.children);
+                newMovie = {};
+                newMovie.title = this.childNodes[1].innerHTML.split("<")[0];
+                newMovie.year = this.childNodes[1].children[0].innerText;
+                newMovie.imageUrl = this.childNodes[0].children[1].src;
+                console.log(newMovie,myMovies.indexOf(newMovie));
+                console.log(myMovies,newMovie);
+                if(myMovies.indexOf(newMovie)!==-1){
+                    myMovies.filter(movie=>movie!==newMovie);
+                    localStorage.setItem('myMovies',JSON.stringify(myMovies));
+                    var temp = myMovies.map(function(result,index){
+                        return '<div class="movie slideup"><div class="movie-image"><div class="delete-movie-button"><button>DELETE</button></div><img src="'+(result.imageUrl||'./image/movie-image-fallback')+'"/></div><div class="movie-title">'+(result.title)+'<span class="movie-release_date">'+result.year+'</span></div></div>'
+                    }).join('');
+                    if(myMovies.length!==0){
+                        document.getElementById('movie-container').innerHTML = temp;
+                    }
+                    else{
+                        document.getElementById('movie-container').innerHTML = "<div><div>No Movie in your library</div></div>";
+                    } 
+                }
+            }
+        });
+    };
 };
-
 function homeScreen(){
     fetch(baseUrl+'trending/all/day?api_key='+api_key).then(res=>res.json())
     .then(function(data){

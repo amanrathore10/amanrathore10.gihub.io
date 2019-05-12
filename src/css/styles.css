@@ -429,11 +429,11 @@ select{
 .show-nav{
     display:block;
 }
-.movie:hover .add-movie-button{
+.movie:hover .add-movie-button,.movie:hover .delete-movie-button{
     display:block;
     opacity:1;
 }
-.add-movie-button{
+.add-movie-button,.delete-movie-button{
     padding-top: 40%;
     cursor:pointer;
      opacity:0;
@@ -447,10 +447,15 @@ select{
     background: rgba(256,256,256,0.7);
 }
 
-.add-movie-button button{
-    position:relative;
+.add-movie-button button,.delete-movie-button button{
+
     display:block;
     margin:auto;
+}
+.delete-movie-button button{
+background:#DC143C;
+margin: auto;
+display: block;
 }
 
 @media screen and (max-width: 1240px){
