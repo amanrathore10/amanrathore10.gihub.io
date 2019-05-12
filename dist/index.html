@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Search app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<link href="main.css" rel="stylesheet"></head>
+<body>
+    <div class="app-container">
+        <header class="header row-wrap">
+            <div class="logo">
+                MOVIEAPP
+            </div>
+            <div id='menu-icon'>&#x2630;</div>
+            <div class="nav">
+                <ol>
+                    <li>PRICING</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    
+                </ol>
+            </div>
+        </header>
+        <main >
+            <div class="options">
+                <div class="movies-type">
+                    <button class='movietab' id='mymovietab'>My Movie Library</button>
+                    <button class='movietab active-tab' id='homemovietab'>Add and Search New Movies</button>
+                </div>
+                <div class="filter">
+                    <div>
+                            <button>FILTER BY: <span id='choosen-filter'></span>  <span class='filter-down-arrow'></span></button>
+                            <ul class="sort-list">
+                                <!-- <li>
+                                    <label for="popularity" class="sort-label ">
+                                    <input name='movie-filter' id='popularity' type="radio" value="popularity">Popularity
+                                    </label>
+                                </li> -->
+                                <li>
+                                    <label for="title" class="sort-label ">
+                                    <input name='movie-filter' id='title' type="radio" value="title">Title
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="year" class="sort-label ">
+                                        <input name='movie-filter' id='year' type="radio" value="year">Year
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <div class="search-box">
+                <input 
+                type="text" 
+                name="movie-search"
+                 id="movie-search"
+                 placeholder="Search Movies.."
+                 >
+            </div>
+            <div id='movie-container' class="movie-container row-wrap">
+                <div class="movie"><div class="movie-image"><svg viewBox="0 0 100 90"><rect width='100' fill="lightpink" height='90'></rect></svg></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"><svg viewBox="0 0 100 90"><rect width='100' fill="lightpink" height='90'></rect></svg></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                <div class="movie"><div class="movie-image"></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+            </div>
+        </main>
+        <div class="modal-container">
+            <div class="modal">
+                <div class="modal-header">
+                    <div class='modal-header-title'>Add a movie to to your collection</div>
+                </div>
+                <div class="modal-content">
+                    <div class="movie-form">
+                            <div class="movie movie--modal"><div class="movie-image"><img id='preview-image' src='img/preview.png' alt='preview-image'/></div><div class="movie-title"><span class="movie-release_date"></span></div></div>
+                            <form action="" id='movie-form'>
+                                <label for="movie-name"><input type="text" id='movie-name' name='movie-name' placeholder="Movie title"></label>
+                                <label for="movie-year"><input type="number" id='movie-year' max="2019" min="1960" name='movie-year' placeholder="Movie year"></label>
+                                <label for="movie-img"><input type="file" id='movie-img' name='movie-img' placeholder='Upload a Movie poster'></label>
+                                <button class='save-movie' type='submit'>SAVE</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class='footer'>
+            <div  class='footer-block'>
+                <div class='footer-head'><span>PRIVACY POLICY</span><span>TERMS AND CONDITIONS</span></div>
+                <div class='footer-sub'><span>2015 Lorem Ipsum. All rights reserved</span></div>
+            </div>
+            <div class='footer-block'>
+                <div class='footer-head'>Follow us on Social</div>
+                <div class='footer-social footer-sub'><a href="">facebook</a>
+                <a href="">twitter</a>
+                <a href="">Instagram</a></div>
+            </div>
+        </div>   
+    </footer>
+    <!-- <script src="app.js"></script> -->
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>
