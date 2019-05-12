@@ -126,13 +126,13 @@ function addMovieListener(){
         for(var k=0;k<movies.length;k++){
             movies[k].addEventListener('click',function(e){
             if(!e.target.contains(this.childNodes[0].children[0])){
-                console.log(this.childNodes,this.children);
+                // console.log(this.childNodes,this.children);
                 newMovie = {};
                 newMovie.title = this.childNodes[1].innerHTML.split("<")[0];
                 newMovie.year = this.childNodes[1].children[0].innerText;
                 newMovie.imageUrl = this.childNodes[0].children[1].src;
-                console.log(newMovie);
-                console.log(myMovies,newMovie);
+                // console.log(newMovie);
+                // console.log(myMovies,newMovie);
                 var newMovies = myMovies;
                 if(newMovies.filter(myMovie=>myMovie.title===newMovie.title).length===0){
                     myMovies.push(newMovie);
@@ -148,18 +148,20 @@ function deleteMovieListener(){
     var movies = document.getElementsByClassName('movie');
         for(var k=0;k<movies.length;k++){
             movies[k].addEventListener('click',function(e){
+                console.log(this.parentNode);
             if(!e.target.contains(this.childNodes[0].children[0])){
                 console.log(this.childNodes,this.children);
                 newMovie = {};
                 newMovie.title = this.childNodes[1].innerHTML.split("<")[0];
                 newMovie.year = this.childNodes[1].children[0].innerText;
                 newMovie.imageUrl = this.childNodes[0].children[1].src;
-                console.log(newMovie,myMovies.indexOf(newMovie));
-                    
-                    myMovies = myMovies.filter(movie=>movie.title!==newMovie.title);
-                    console.log(myMovies,newMovie);
-                    localStorage.setItem('myMovies',JSON.stringify(myMovies));
-                    renderMyMovies();
+                // console.log(newMovie,myMovies.indexOf(newMovie));
+                
+                myMovies = myMovies.filter(movie=>movie.title!==newMovie.title);
+                console.log(myMovies,newMovie);
+                localStorage.setItem('myMovies',JSON.stringify(myMovies));
+                renderMyMovies();
+                deleteMovieListener();
             }
         });
     };
