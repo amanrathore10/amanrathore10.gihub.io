@@ -133,7 +133,8 @@ function addMovieListener(){
                 newMovie.imageUrl = this.childNodes[0].children[1].src;
                 console.log(newMovie);
                 console.log(myMovies,newMovie);
-                if(myMovies.indexOf(newMovie)===-1){
+                var newMovies = myMovies;
+                if(newMovies.filter(myMovie=>myMovie.title===newMovie.title).length===0){
                     myMovies.push(newMovie);
                     localStorage.setItem('myMovies',JSON.stringify(myMovies));
                 }else{
@@ -154,24 +155,26 @@ function deleteMovieListener(){
                 newMovie.year = this.childNodes[1].children[0].innerText;
                 newMovie.imageUrl = this.childNodes[0].children[1].src;
                 console.log(newMovie,myMovies.indexOf(newMovie));
-                console.log(myMovies,newMovie);
-                if(myMovies.indexOf(newMovie)!==-1){
-                    myMovies.filter(movie=>movie!==newMovie);
+                    
+                    myMovies = myMovies.filter(movie=>movie.title!==newMovie.title);
+                    console.log(myMovies,newMovie);
                     localStorage.setItem('myMovies',JSON.stringify(myMovies));
-                    var temp = myMovies.map(function(result,index){
-                        return '<div class="movie slideup"><div class="movie-image"><div class="delete-movie-button"><button>DELETE</button></div><img src="'+(result.imageUrl||'./image/movie-image-fallback')+'"/></div><div class="movie-title">'+(result.title)+'<span class="movie-release_date">'+result.year+'</span></div></div>'
-                    }).join('');
-                    if(myMovies.length!==0){
-                        document.getElementById('movie-container').innerHTML = temp;
-                    }
-                    else{
-                        document.getElementById('movie-container').innerHTML = "<div><div>No Movie in your library</div></div>";
-                    } 
-                }
+                    renderMyMovies();
             }
         });
     };
 };
+function renderMyMovies(){
+    var temp = myMovies.map(function(result,index){
+        return '<div class="movie slideup"><div class="movie-image"><div class="delete-movie-button"><button>DELETE</button></div><img src="'+(result.imageUrl||'./image/movie-image-fallback')+'"/></div><div class="movie-title">'+(result.title)+'<span class="movie-release_date">'+result.year+'</span></div></div>'
+    }).join('');
+    if(myMovies.length!==0){
+        document.getElementById('movie-container').innerHTML = temp;
+    }
+    else{
+        document.getElementById('movie-container').innerHTML = "<div><div>No Movie in your library</div></div>";
+    } 
+}
 function homeScreen(){
     fetch(baseUrl+'trending/all/day?api_key='+api_key).then(res=>res.json())
     .then(function(data){

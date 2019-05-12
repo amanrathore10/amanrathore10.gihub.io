@@ -382,7 +382,7 @@ select{
     text-align: right;
 }
 .footer-head span{
-    padding:0 1rem;
+    padding:0 1rem 0 0;
 }
 .footer-sub{
     color:#999999;
